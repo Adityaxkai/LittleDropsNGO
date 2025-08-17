@@ -229,7 +229,7 @@ export default function GetInvolvedPage() {
               Other Ways to Support
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              There are many ways to contribute to our mission, even if you can't volunteer or partner with us.
+              There are many ways to contribute to our mission, even if you can&apos;t volunteer or partner with us.
             </p>
           </div>
           

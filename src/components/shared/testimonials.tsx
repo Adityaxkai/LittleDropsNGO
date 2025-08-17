@@ -112,7 +112,7 @@ export function Testimonials() {
                     </Badge>
                   </div>
                   <blockquote className="text-xs md:text-sm text-gray-700 mb-2 leading-relaxed">
-                    "{testimonials[currentIndex].content}"
+                    &ldquo;{testimonials[currentIndex].content}&rdquo;
                   </blockquote>
                   <div className="flex items-center space-x-2">
                     <div className="w-6 h-6 bg-gray-300 rounded-full"></div>

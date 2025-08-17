@@ -82,8 +82,8 @@ export function ImpactCounters() {
             Our Impact
           </h2>
           <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-            Together, we've made a difference in the lives of thousands of people 
-            around the world. Here's what we've accomplished so far.
+                            Together, we&apos;ve made a difference in the lives of thousands of people
+                around the world. Here&apos;s what we&apos;ve accomplished so far.
           </p>
         </div>
         

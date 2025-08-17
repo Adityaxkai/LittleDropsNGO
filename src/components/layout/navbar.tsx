@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Logo } from "@/components/ui/logo";
-import { Menu, X, Home, Users, BookOpen, Camera, Video, Heart, DollarSign, Phone } from "lucide-react";
+import { X, Home, Users, BookOpen, Camera, Video, Heart, DollarSign, Phone } from "lucide-react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 
@@ -97,7 +97,7 @@ export function Navbar() {
                     {/* Navigation Links - Optimized for Screen Fit */}
                     <div className="flex-1 pt-1">
                       <div className="space-y-0.5">
-                        {navigation.map((item, index) => {
+                        {navigation.map((item) => {
                           const Icon = item.icon;
                           return (
                             <Link

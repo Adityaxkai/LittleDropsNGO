@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Droplets, Heart, Users, MapPin, Calendar, Users2 } from "lucide-react";
+import { ArrowRight, BookOpen, Droplets, Heart, Users, MapPin, Users2 } from "lucide-react";
 
 const programs = [
   {

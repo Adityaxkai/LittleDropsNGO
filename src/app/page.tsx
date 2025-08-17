@@ -1,5 +1,5 @@
 import { MainLayout } from "@/components/layout/main-layout";
-import { CTASection } from "@/components/shared/cta-section";
+
 import { ImpactCounters } from "@/components/shared/impact-counters";
 import { Testimonials } from "@/components/shared/testimonials";
 import { BloodDonation } from "@/components/shared/blood-donation";
@@ -131,7 +131,7 @@ export default function HomePage() {
                 About Little Drops
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Founded with the belief that "Humanity is Our Religion," Little Drops works tirelessly 
+                Founded with the belief that &ldquo;Humanity is Our Religion,&rdquo; Little Drops works tirelessly 
                 to serve communities in Jharkhand and beyond. We focus on education, healthcare, 
                 clean water, and community development.
               </p>
@@ -247,7 +247,7 @@ export default function HomePage() {
               <div className="p-6">
                 <h4 className="text-lg font-semibold text-gray-900 mb-3">Mobile Medical Camps</h4>
                 <p className="text-gray-600 mb-4">
-                  We've provided healthcare to over 5,000 people in remote villages through our mobile medical camps, 
+                  We&apos;ve provided healthcare to over 5,000 people in remote villages through our mobile medical camps, 
                   bringing essential medical services to communities that had no access before.
                 </p>
                 <div className="flex items-center justify-between">

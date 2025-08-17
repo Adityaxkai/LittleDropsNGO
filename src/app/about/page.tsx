@@ -1,8 +1,7 @@
 import { MainLayout } from "@/components/layout/main-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Heart, Target, Eye, Award, Users, Globe, Clock, Shield } from "lucide-react";
+import { Heart, Target, Eye, Users, Globe, Clock, Shield } from "lucide-react";
 
 const values = [
   {
@@ -89,7 +88,7 @@ export default function AboutPage() {
                  Our Story
                </h2>
                <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed">
-                 Little Drops was founded with a simple yet powerful belief: "Humanity is Our Religion." 
+                 Little Drops was founded with a simple yet powerful belief: &ldquo;Humanity is Our Religion.&rdquo;
                  We started as a small initiative in Ranchi, Jharkhand, with the goal of serving 
                  the most vulnerable communities in our region.
                </p>
@@ -373,7 +372,7 @@ export default function AboutPage() {
                Our Impact Over the Years
              </h2>
              <p className="text-base md:text-xl text-blue-100 max-w-2xl mx-auto">
-               Since our founding, we've made significant progress in improving lives and communities in Jharkhand.
+               Since our founding, we&apos;ve made significant progress in improving lives and communities in Jharkhand.
              </p>
            </div>
            

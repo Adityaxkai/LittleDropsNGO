@@ -33,7 +33,7 @@ const contactInfo = [
     icon: Clock,
     title: "Office Hours",
     details: ["Monday - Friday: 9 AM - 6 PM", "Saturday: 10 AM - 4 PM", "Sunday: Closed"],
-    description: "We're here to help when you need us",
+    description: "We&apos;re here to help when you need us",
   },
 ];
 
@@ -60,7 +60,7 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Mock form submission
-    alert("Thank you for your message! We'll get back to you soon. This is a demo - no actual email will be sent.");
+    alert("Thank you for your message! We&apos;ll get back to you soon. This is a demo - no actual email will be sent.");
     setFormData({
       firstName: "",
       lastName: "",
@@ -85,7 +85,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto text-orange-100">
-            Get in touch with us. We'd love to hear from you and answer any questions you may have about our work.
+            Get in touch with us. We&apos;d love to hear from you and answer any questions you may have about our work.
           </p>
         </div>
       </section>
@@ -242,7 +242,7 @@ export default function ContactPage() {
                   </div>
                   <p className="text-gray-600 mb-4">
                     For urgent matters, please call us directly or send us an email. 
-                    We're here to help when you need us most.
+                    We&apos;re here to help when you need us most.
                   </p>
                   <div className="space-y-2">
                     <Button asChild variant="outline" className="w-full">
@@ -273,7 +273,7 @@ export default function ContactPage() {
               Visit Our Office
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Come visit us at our headquarters in Ranchi. We'd love to meet you in person and show you around.
+              Come visit us at our headquarters in Ranchi. We&apos;d love to meet you in person and show you around.
             </p>
           </div>
           
@@ -312,7 +312,7 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Getting Here</h4>
                     <p className="text-gray-600 text-sm">
-                      We're located in Neori Vikas area of Ranchi, easily accessible by public transportation 
+                      We&apos;re located in Neori Vikas area of Ranchi, easily accessible by public transportation 
                       and with plenty of parking available.
                     </p>
                   </div>
@@ -373,7 +373,7 @@ export default function ContactPage() {
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Can I schedule a meeting?</h3>
                 <p className="text-gray-600 text-sm">
-                  Yes! Please contact us to schedule an appointment. We're happy to meet in person or virtually.
+                  Yes! Please contact us to schedule an appointment. We&apos;re happy to meet in person or virtually.
                 </p>
               </div>
               <div>

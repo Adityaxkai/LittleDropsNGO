@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Card } from "@/components/ui/card";
 import { 
   Camera, 
   Users, 
@@ -12,8 +11,6 @@ import {
   BookOpen, 
   Droplets, 
   Globe, 
-  Award,
-  Play,
   X,
   ChevronLeft,
   ChevronRight,
