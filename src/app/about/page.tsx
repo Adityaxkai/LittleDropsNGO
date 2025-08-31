@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { MainLayout } from "@/components/layout/main-layout";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
@@ -60,6 +63,27 @@ const team = [
 ];
 
 export default function AboutPage() {
+  const [currentValuesSlide, setCurrentValuesSlide] = useState(0);
+  const [currentTeamSlide, setCurrentTeamSlide] = useState(0);
+
+  // Auto-slide functionality for values
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentValuesSlide((prev) => (prev + 1) % values.length);
+    }, 3000); // Slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Auto-slide functionality for team
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTeamSlide((prev) => (prev + 1) % team.length);
+    }, 3000); // Slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <MainLayout>
       {/* Hero Section */}
@@ -160,7 +184,7 @@ export default function AboutPage() {
             {/* Mobile Scrollable Cards */}
             <div className="md:hidden">
               <div className="relative">
-                <div className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory">
+                <div className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory px-4">
                   <Card className="border-0 shadow-lg min-w-[300px] flex-shrink-0 snap-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-gradient-to-br from-white to-blue-50/30">
                     <CardContent className="p-6 relative overflow-hidden">
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
@@ -246,39 +270,49 @@ export default function AboutPage() {
              ))}
            </div>
 
-                       {/* Mobile Scrollable Cards */}
+                       {/* Mobile Auto-sliding Cards */}
             <div className="md:hidden">
               <div className="relative">
-                <div className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory">
-                  {values.map((value, index) => (
-                    <Card 
-                      key={index} 
-                      className="border-0 shadow-lg min-w-[300px] flex-shrink-0 snap-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-gradient-to-br from-white to-blue-50/30"
-                    >
-                      <CardContent className="p-6 text-center relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-                        <div className="flex justify-center mb-4">
-                          <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center text-blue-600 shadow-md">
-                            <value.icon className="h-7 w-7" />
-                          </div>
-                        </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">
-                          {value.title}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">
-                          {value.description}
-                        </p>
-                        <div className="mt-4 flex justify-center">
-                          <div className="w-8 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-md">
+                  <div 
+                    className="flex transition-transform duration-700 ease-in-out"
+                    style={{ transform: `translateX(-${currentValuesSlide * 100}%)` }}
+                  >
+                    {values.map((value, index) => (
+                      <div key={index} className="min-w-full p-4">
+                        <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/30">
+                          <CardContent className="p-4 text-center relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                            <div className="flex justify-center mb-3">
+                              <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center text-blue-600 shadow-md">
+                                <value.icon className="h-6 w-6" />
+                              </div>
+                            </div>
+                            <h3 className="text-lg font-bold text-gray-900 mb-2">
+                              {value.title}
+                            </h3>
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                              {value.description}
+                            </p>
+                            <div className="mt-3 flex justify-center">
+                              <div className="w-6 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                {/* Scroll Indicators */}
-                <div className="flex justify-center mt-4 space-x-2">
+                
+                {/* Slide Indicators */}
+                <div className="flex justify-center mt-3 space-x-2">
                   {values.map((_, index) => (
-                    <div key={index} className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                    <div
+                      key={index}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        currentValuesSlide === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
+                      }`}
+                    />
                   ))}
                 </div>
               </div>
@@ -327,48 +361,58 @@ export default function AboutPage() {
               ))}
             </div>
 
-                       {/* Mobile Scrollable Cards */}
+                       {/* Mobile Auto-sliding Cards */}
             <div className="md:hidden">
               <div className="relative">
-                <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory justify-center">
-                  {team.map((member, index) => (
-                    <Card 
-                      key={index} 
-                      className="border-0 shadow-lg min-w-[280px] max-w-[320px] flex-shrink-0 snap-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50/50"
-                    >
-                                             <CardContent className="p-6 text-center relative overflow-hidden">
-                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-                         <div className="relative w-36 h-36 rounded-full mx-auto mb-4 overflow-hidden shadow-xl">
-                           {/* Background blur effect */}
-                           <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-purple-100/30 backdrop-blur-sm"></div>
-                           <Image
-                             src={member.image}
-                             alt={member.name}
-                             fill
-                             className="object-cover"
-                           />
-                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">
-                          {member.name}
-                        </h3>
-                        <Badge className="mb-3 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-xs font-medium px-3 py-1">
-                          {member.role}
-                        </Badge>
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                          {member.bio}
-                        </p>
-                        <div className="mt-4 flex justify-center">
-                          <div className="w-8 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-md">
+                  <div 
+                    className="flex transition-transform duration-700 ease-in-out"
+                    style={{ transform: `translateX(-${currentTeamSlide * 100}%)` }}
+                  >
+                    {team.map((member, index) => (
+                      <div key={index} className="min-w-full p-4">
+                        <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50">
+                          <CardContent className="p-4 text-center relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                            <div className="relative w-32 h-32 rounded-full mx-auto mb-3 overflow-hidden shadow-xl">
+                              {/* Background blur effect */}
+                              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-purple-100/30 backdrop-blur-sm"></div>
+                              <Image
+                                src={member.image}
+                                alt={member.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <h3 className="text-lg font-bold text-gray-900 mb-2">
+                              {member.name}
+                            </h3>
+                            <Badge className="mb-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-xs font-medium px-3 py-1">
+                              {member.role}
+                            </Badge>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              {member.bio}
+                            </p>
+                            <div className="mt-3 flex justify-center">
+                              <div className="w-6 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                {/* Scroll Indicators */}
-                <div className="flex justify-center mt-4 space-x-2">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                  <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                  <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                
+                {/* Slide Indicators */}
+                <div className="flex justify-center mt-3 space-x-2">
+                  {team.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        currentTeamSlide === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
