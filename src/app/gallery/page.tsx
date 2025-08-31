@@ -250,6 +250,9 @@ export default function GalleryPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   // Helper function to get icon for category
   const getIconForCategory = (category: string) => {
     const iconMap = {
@@ -394,6 +397,32 @@ export default function GalleryPage() {
     }
   };
 
+  const handleAdminClick = () => {
+    if (isAdminMode) {
+      setIsAdminMode(false);
+    } else {
+      setShowPasswordDialog(true);
+    }
+  };
+
+  const handlePasswordSubmit = () => {
+    if (password === "0000") {
+      setIsAdminMode(true);
+      setShowPasswordDialog(false);
+      setPassword("");
+      setPasswordError("");
+    } else {
+      setPasswordError("Incorrect password. Please try again.");
+      setPassword("");
+    }
+  };
+
+  const handlePasswordCancel = () => {
+    setShowPasswordDialog(false);
+    setPassword("");
+    setPasswordError("");
+  };
+
   // Show loading state until client-side data is loaded to prevent hydration mismatch
   if (!isLoaded) {
     return (
@@ -484,7 +513,7 @@ export default function GalleryPage() {
               <Button
                 variant={isAdminMode ? "default" : "outline"}
                 size="sm"
-                onClick={() => setIsAdminMode(!isAdminMode)}
+                onClick={handleAdminClick}
                 className="flex items-center gap-1"
                 suppressHydrationWarning
               >
@@ -601,6 +630,48 @@ export default function GalleryPage() {
           </div>
         </div>
       </section>
+
+      {/* Password Dialog */}
+      <Dialog open={showPasswordDialog} onOpenChange={setShowPasswordDialog}>
+        <DialogContent className="sm:max-w-[400px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Settings className="h-5 w-5" />
+              Admin Access Required
+            </DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="admin-password">Enter Admin Password</Label>
+              <Input
+                id="admin-password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                className="font-mono text-center text-lg tracking-wider"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handlePasswordSubmit();
+                  }
+                }}
+                suppressHydrationWarning
+              />
+              {passwordError && (
+                <p className="text-sm text-red-600 mt-1">{passwordError}</p>
+              )}
+            </div>
+          </div>
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" onClick={handlePasswordCancel}>
+              Cancel
+            </Button>
+            <Button onClick={handlePasswordSubmit} className="bg-blue-600 hover:bg-blue-700">
+              Access Admin
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Gallery Grid */}
       <section className="py-8 bg-gray-50">
