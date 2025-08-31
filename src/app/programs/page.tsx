@@ -149,12 +149,12 @@ export default function ProgramsPage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-600 to-blue-700 text-white py-20">
+      <section className="bg-gradient-to-br from-green-600 to-blue-700 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold mb-3">
             Our Programs
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto text-green-100">
+          <p className="text-base md:text-lg max-w-3xl mx-auto text-green-100">
             Comprehensive initiatives that address the most pressing needs in communities 
             around the world, creating lasting positive change.
           </p>

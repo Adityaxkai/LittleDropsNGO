@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import { Droplets, Heart, Users, Calendar, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
@@ -180,11 +181,12 @@ export function BloodDonation() {
 
           {/* Right Side - Image (2 columns) */}
           <div className="lg:col-span-2 relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
-              <img
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-gray-100 relative">
+              <Image
                 src="/blood-donat.jpg"
                 alt="Blood donation in progress"
-                className="w-full h-full object-cover object-center"
+                fill
+                className="object-cover object-center"
                 style={{ objectPosition: 'center 30%' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-red-900/25 via-red-900/10 to-transparent"></div>

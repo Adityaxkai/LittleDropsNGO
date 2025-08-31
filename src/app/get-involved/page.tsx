@@ -99,12 +99,12 @@ export default function GetInvolvedPage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-20">
+      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold mb-3">
             Get Involved
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto text-purple-100">
+          <p className="text-base md:text-lg max-w-3xl mx-auto text-purple-100">
             Join us in making a difference. Whether through volunteering, donating, or partnering, 
             there are many ways to support our mission.
           </p>

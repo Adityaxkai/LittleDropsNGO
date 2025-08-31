@@ -79,12 +79,12 @@ export default function ContactPage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-orange-600 to-red-700 text-white py-20">
+      <section className="bg-gradient-to-br from-orange-600 to-red-700 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold mb-3">
             Contact Us
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto text-orange-100">
+          <p className="text-base md:text-lg max-w-3xl mx-auto text-orange-100">
             Get in touch with us. We&apos;d love to hear from you and answer any questions you may have about our work.
           </p>
         </div>

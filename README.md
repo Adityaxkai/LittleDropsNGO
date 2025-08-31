@@ -54,8 +54,8 @@ A professional, modern, fully responsive NGO website built with Next.js 14, Type
    ```
 
 3. **Run the development server**
-   ```bash
-   npm run dev
+```bash
+npm run dev
    ```
 
 4. **Open your browser**

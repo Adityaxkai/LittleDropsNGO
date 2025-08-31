@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -272,7 +273,7 @@ export default function GalleryPage() {
       try {
         const parsedGallery = JSON.parse(savedGallery);
         // Restore icons for loaded data
-        const restoredGallery = parsedGallery.map((item: any) => ({
+        const restoredGallery = parsedGallery.map((item: { id: number; title: string; category: string; image: string; description: string; featured: boolean }) => ({
           ...item,
           icon: getIconForCategory(item.category)
         }));
@@ -414,18 +415,18 @@ export default function GalleryPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative py-12 bg-gradient-to-r from-blue-600 to-purple-700 overflow-hidden">
+      <section className="relative py-8 bg-gradient-to-r from-blue-600 to-purple-700 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-          <Badge className="bg-white/20 text-white border-white/30 mb-3 text-xs">
+          <Badge className="bg-white/20 text-white border-white/30 mb-2 text-xs">
             <Camera className="h-3 w-3 mr-1" />
             Our Impact Gallery
           </Badge>
-          <h1 className="text-xl md:text-3xl font-bold text-white mb-3 leading-tight">
+          <h1 className="text-lg md:text-2xl font-bold text-white mb-2 leading-tight">
             Capturing Moments of
             <span className="block text-yellow-300">Hope & Change</span>
           </h1>
-          <p className="text-sm md:text-base text-blue-100 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs md:text-sm text-blue-100 max-w-2xl mx-auto leading-relaxed">
             Explore our visual journey of making a difference in communities across Jharkhand. 
             Every image tells a story of transformation, hope, and positive impact.
           </p>
@@ -546,8 +547,8 @@ export default function GalleryPage() {
                           </Button>
                         </div>
                         {newImage.image && (
-                          <div className="mt-2">
-                            <img src={newImage.image} alt="Preview" className="w-32 h-24 object-cover rounded" />
+                          <div className="mt-2 relative w-32 h-24">
+                            <Image src={newImage.image} alt="Preview" fill className="object-cover rounded" />
                           </div>
                         )}
                       </div>
@@ -624,13 +625,14 @@ export default function GalleryPage() {
                 }`}
                 onClick={() => openLightbox(item, index)}
               >
-                <div className="relative overflow-hidden">
-                  <img
+                <div className={`relative overflow-hidden ${
+                  item.featured ? 'h-64' : 'h-48'
+                }`}>
+                  <Image
                     src={item.image}
                     alt={item.title}
-                    className={`w-full object-cover transition-transform duration-300 group-hover:scale-105 ${
-                      item.featured ? 'h-64' : 'h-48'
-                    }`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
@@ -771,11 +773,12 @@ export default function GalleryPage() {
             </Button>
 
             {/* Image */}
-            <div className="relative">
-              <img
+            <div className="relative w-full h-auto max-h-[75vh]">
+              <Image
                 src={selectedImage.image}
                 alt={selectedImage.title}
-                className="w-full h-auto max-h-[75vh] object-contain rounded-lg"
+                fill
+                className="object-contain rounded-lg"
               />
               
               {/* Image Info */}

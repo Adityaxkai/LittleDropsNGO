@@ -1,4 +1,5 @@
 import { MainLayout } from "@/components/layout/main-layout";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Target, Eye, Users, Globe, Clock, Shield } from "lucide-react";
@@ -62,12 +63,12 @@ export default function AboutPage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-20">
+      <section className="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold mb-3">
             About Little Drops
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto text-blue-100">
+          <p className="text-base md:text-lg max-w-3xl mx-auto text-blue-100">
             Humanity is Our Religion. Transforming lives and communities through humanitarian aid, 
             education, and sustainable development in Jharkhand and beyond.
           </p>
@@ -98,11 +99,12 @@ export default function AboutPage() {
                </p>
              </div>
              <div className="relative order-1 lg:order-2">
-               <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-xs md:max-w-sm mx-auto">
-                 <img
+               <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-xs md:max-w-sm mx-auto relative">
+                 <Image
                    src="/about-banner.jpg"
                    alt="Swami Vivekananda - Inspiring our humanitarian mission"
-                   className="w-full h-full object-cover object-top"
+                   fill
+                   className="object-cover object-top"
                  />
                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                  <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 text-white">
@@ -301,11 +303,14 @@ export default function AboutPage() {
               {team.map((member, index) => (
                 <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6 text-center">
-                    <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
-                      <img
+                    <div className="relative w-40 h-40 rounded-full mx-auto mb-4 overflow-hidden shadow-xl">
+                      {/* Background blur effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-purple-100/30 backdrop-blur-sm"></div>
+                      <Image
                         src={member.image}
                         alt={member.name}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                       />
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -333,11 +338,14 @@ export default function AboutPage() {
                     >
                                              <CardContent className="p-6 text-center relative overflow-hidden">
                          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-                         <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden shadow-md">
-                           <img
+                         <div className="relative w-36 h-36 rounded-full mx-auto mb-4 overflow-hidden shadow-xl">
+                           {/* Background blur effect */}
+                           <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-purple-100/30 backdrop-blur-sm"></div>
+                           <Image
                              src={member.image}
                              alt={member.name}
-                             className="w-full h-full object-cover"
+                             fill
+                             className="object-cover"
                            />
                          </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2">

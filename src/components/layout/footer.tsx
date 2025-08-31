@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -35,10 +36,11 @@ export function Footer() {
             <div className="flex items-center space-x-2">
               {/* Logo */}
               <div className="relative w-10 h-10">
-                <img
+                <Image
                   src="/logo.png"
                   alt="Little Drops Logo"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
                 />
               </div>
               

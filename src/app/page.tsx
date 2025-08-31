@@ -1,4 +1,5 @@
 import { MainLayout } from "@/components/layout/main-layout";
+import Image from "next/image";
 
 import { ImpactCounters } from "@/components/shared/impact-counters";
 import { Testimonials } from "@/components/shared/testimonials";
@@ -39,10 +40,11 @@ export default function HomePage() {
       <section className="relative h-[500px] flex flex-col lg:flex-row overflow-hidden">
         {/* Left Side - Banner Image */}
         <div className="relative w-full lg:w-1/2 h-full group">
-          <img
+          <Image
             src="/ChatGPT Image Aug 17, 2025, 10_46_22 AM.png"
             alt="Little Drops Banner"
-            className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            fill
+            className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
             style={{ objectPosition: 'center 30%' }}
           />
           {/* Enhanced gradient overlay */}
@@ -148,10 +150,11 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                <img
+                <Image
                   src="/banner-littledrops.jpg"
                   alt="Little Drops NGO Banner"
-                  className="w-full h-full object-contain object-center bg-gray-50"
+                  fill
+                  className="object-contain object-center bg-gray-50"
                 />
               </div>
             </div>
@@ -176,10 +179,11 @@ export default function HomePage() {
             {programs.map((program, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
                 <div className="h-48 relative overflow-hidden">
-                  <img
+                  <Image
                     src={program.image}
                     alt={program.title}
-                    className="w-full h-full object-cover object-center"
+                    fill
+                    className="object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
@@ -229,10 +233,11 @@ export default function HomePage() {
             {/* Story 1 */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="h-48 relative overflow-hidden">
-                <img
+                <Image
                   src="/WhatsApp Image 2025-08-17 at 15.43.11_921efcda.jpg"
                   alt="Science Awareness Mela Inauguration"
-                  className="w-full h-full object-cover object-center"
+                  fill
+                  className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/80 via-blue-500/40 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
@@ -262,10 +267,11 @@ export default function HomePage() {
             {/* Story 2 */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="h-48 relative overflow-hidden">
-                <img
+                <Image
                   src="/WhatsApp Image 2025-08-17 at 15.49.51_32e49d80.jpg"
                   alt="Cultural Performance at Science Mela"
-                  className="w-full h-full object-cover object-center"
+                  fill
+                  className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-600/80 via-green-500/40 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
@@ -295,10 +301,11 @@ export default function HomePage() {
             {/* Story 3 */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="h-48 relative overflow-hidden">
-                <img
+                <Image
                   src="/WhatsApp Image 2025-08-17 at 15.37.16_c7cbb4bc.jpg"
                   alt="Award Ceremony at Science Mela"
-                  className="w-full h-full object-cover object-center"
+                  fill
+                  className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-purple-600/80 via-purple-500/40 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Logo } from "@/components/ui/logo";
@@ -16,7 +17,6 @@ const navigation = [
   { name: "Gallery", href: "/gallery", icon: Camera },
   { name: "Media", href: "/media", icon: Video },
   { name: "Get Involved", href: "/get-involved", icon: Heart },
-  { name: "Donate", href: "/donate", icon: DollarSign },
   { name: "Contact", href: "/contact", icon: Phone },
 ];
 
@@ -74,8 +74,8 @@ export function Navbar() {
                     {/* Professional Header with Logo */}
                     <div className="flex items-center justify-between mb-2 pb-2 border-b border-gray-200/50">
                       <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
-                          <img src="/logo.png" alt="Little Drops Logo" className="w-6 h-6 rounded object-cover" />
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-md relative">
+                          <Image src="/logo.png" alt="Little Drops Logo" fill className="w-6 h-6 rounded object-cover" />
                         </div>
                         <div>
                           <SheetTitle className="text-base font-bold text-gray-900">

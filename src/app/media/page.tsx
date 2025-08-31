@@ -1,4 +1,5 @@
 import { MainLayout } from "@/components/layout/main-layout";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -130,12 +131,12 @@ export default function MediaPage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-20">
+      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold mb-3">
             Media & Press
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto text-purple-100">
+          <p className="text-base md:text-lg max-w-3xl mx-auto text-purple-100">
             Stay updated with our latest news, press coverage, and media mentions.
           </p>
         </div>
@@ -202,11 +203,12 @@ export default function MediaPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {item.image && (
                     <div className="md:col-span-1">
-                      <div className="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden">
-                        <img 
+                      <div className="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden relative">
+                        <Image 
                           src={item.image} 
                           alt={item.title}
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-cover"
                         />
                       </div>
                     </div>
