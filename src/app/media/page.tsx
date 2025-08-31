@@ -39,63 +39,69 @@ const mediaCategories = [
 const recentMedia = [
   {
     id: 1,
-    title: "Little Drops: Serving Humanity in Rural Jharkhand",
-    source: "The Times of India",
-    date: "2024-01-15",
+    title: "Science Awareness Mela Organized by Little Drops",
+    source: "Prabhat Khabar",
+    date: "2023-05-03",
     category: "News",
-    description: "Feature article on our educational initiatives in rural Jharkhand and their impact on local communities.",
+    description: "Three-day science awareness fair organized by Little Drops at Utkramit Madhya Vidyalaya Tangrain, sponsored by Ministry of Science & Technology, Govt. of India.",
     link: "#",
     type: "news",
+    image: "/WhatsApp Image 2025-08-17 at 15.38.27_6ad2fc35.jpg"
   },
   {
     id: 2,
-    title: "Healthcare Access in Remote Villages",
-    source: "DD News",
-    date: "2024-01-10",
-    category: "Video",
-    description: "Documentary feature on our mobile healthcare services reaching remote villages in Jharkhand.",
+    title: "Science Fair Begins at SS High School Patratu",
+    source: "Dainik Bhaskar",
+    date: "2023-05-03",
+    category: "News",
+    description: "Three-day science awareness fair inaugurated by chief guest PVUNL GM Project Gautam Dev, organized by NGO Little Drops.",
     link: "#",
-    type: "video",
+    type: "news",
+    image: "/WhatsApp Image 2025-08-17 at 15.38.28_6f5275f6.jpg"
   },
   {
     id: 3,
-    title: "Community Development Through Education",
-    source: "All India Radio",
-    date: "2024-01-05",
-    category: "Radio",
-    description: "Radio interview discussing our approach to community development through education.",
+    title: "Science Awareness Mela in Rajendra Middle School",
+    source: "Hindustan",
+    date: "2023-05-03",
+    category: "News",
+    description: "Science awareness fair organized by Ministry of Science & Technology and Little Drops organization at Utkramit Madhya Vidyalaya Tangrain.",
     link: "#",
-    type: "radio",
+    type: "news",
+    image: "/WhatsApp Image 2025-08-17 at 15.41.25_f6cf1c15.jpg"
   },
   {
     id: 4,
-    title: "Excellence in Social Service Award",
-    source: "Jharkhand Government",
-    date: "2023-12-20",
-    category: "Award",
-    description: "Recognition for outstanding contribution to social service and community development.",
+    title: "Blood Donation Camp by Little Drops",
+    source: "Dainik Bhaskar",
+    date: "2013-01-14",
+    category: "News",
+    description: "Successful blood donation camp organized by Little Drops, attended by dignitaries and community members.",
     link: "#",
-    type: "award",
+    type: "news",
+    image: "/blood-donat.jpg"
   },
   {
     id: 5,
-    title: "Water Conservation Projects Making Impact",
-    source: "Hindustan Times",
-    date: "2023-12-15",
+    title: "Science Awareness Mela Award Ceremony",
+    source: "Prabhat Khabar",
+    date: "2019-10-25",
     category: "News",
-    description: "Coverage of our clean water initiatives and their positive impact on rural communities.",
+    description: "Children presented dance and drama to convey environmental protection message at the Science Awareness Mela.",
     link: "#",
     type: "news",
+    image: "/WhatsApp Image 2025-08-17 at 15.43.11_921efcda.jpg"
   },
   {
     id: 6,
-    title: "Empowering Rural Women Through Education",
-    source: "BBC Hindi",
-    date: "2023-12-10",
-    category: "Video",
-    description: "Feature story on our women empowerment programs through education and skill development.",
+    title: "Science Awareness Mela at SS Plus Two High School",
+    source: "Azad Sipahi",
+    date: "2019-10-24",
+    category: "News",
+    description: "Three-day science awareness fair organized by Little Drops organization, sponsored by Ministry of Science and Technology, New Delhi.",
     link: "#",
-    type: "video",
+    type: "news",
+    image: "/WhatsApp Image 2025-08-17 at 15.13.44_da6cad57.jpg"
   },
 ];
 
@@ -192,38 +198,51 @@ export default function MediaPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentMedia.map((item) => (
-              <Card key={item.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge className={
-                      item.type === "news" ? "bg-blue-100 text-blue-800" :
-                      item.type === "video" ? "bg-red-100 text-red-800" :
-                      item.type === "radio" ? "bg-green-100 text-green-800" :
-                      "bg-purple-100 text-purple-800"
-                    }>
-                      {item.category}
-                    </Badge>
-                    <div className="flex items-center space-x-1 text-sm text-gray-500">
-                      <Calendar className="h-4 w-4" />
-                      <span>{item.date}</span>
+              <Card key={item.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {item.image && (
+                    <div className="md:col-span-1">
+                      <div className="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden">
+                        <img 
+                          src={item.image} 
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    <strong>Source:</strong> {item.source}
-                  </p>
-                  <p className="text-gray-600 text-sm mb-4">
-                    {item.description}
-                  </p>
-                  <Button asChild variant="outline" size="sm" className="w-full">
-                    <Link href={item.link}>
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Read More
-                    </Link>
-                  </Button>
-                </CardContent>
+                  )}
+                  <CardContent className={`p-6 ${item.image ? 'md:col-span-1' : ''}`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <Badge className={`text-xs ${
+                        item.type === "news" ? "bg-blue-100 text-blue-800" :
+                        item.type === "video" ? "bg-red-100 text-red-800" :
+                        item.type === "radio" ? "bg-green-100 text-green-800" :
+                        "bg-purple-100 text-purple-800"
+                      }`}>
+                        {item.category}
+                      </Badge>
+                      <div className="flex items-center space-x-1 text-xs text-gray-500">
+                        <Calendar className="h-3 w-3" />
+                        <span>{item.date}</span>
+                      </div>
+                    </div>
+                    <h3 className="text-base font-semibold text-gray-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-gray-600 mb-2">
+                      <strong>Source:</strong> {item.source}
+                    </p>
+                    <p className="text-gray-600 text-xs mb-3 line-clamp-3">
+                      {item.description}
+                    </p>
+                    <Button asChild variant="outline" size="sm" className="w-full text-xs py-1">
+                      <Link href={item.link}>
+                        <ExternalLink className="mr-1 h-3 w-3" />
+                        Read More
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </div>
               </Card>
             ))}
           </div>

@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { 
   Camera, 
   Users, 
@@ -17,37 +22,41 @@ import {
   Search,
   Filter,
   Download,
-  Share2
+  Share2,
+  Plus,
+  Trash2,
+  Settings,
+  Upload
 } from "lucide-react";
 import { Navbar } from "@/components/layout/navbar";
 
 const galleryData = [
   {
     id: 1,
-    title: "Food Distribution Program",
-    category: "food",
-    image: "/food-distribution.jpg",
-    description: "Providing nutritious meals to underprivileged children and families",
-    icon: <Heart className="h-4 w-4" />,
-    featured: true
+    title: "Science Awareness Mela - Group Photo",
+    category: "events",
+    image: "/WhatsApp Image 2025-08-17 at 15.13.44_da6cad57.jpg",
+    description: "Group photo with students and organizers at the Science Awareness Mela",
+    icon: <Users className="h-4 w-4" />,
+    featured: false
   },
   {
     id: 2,
-    title: "Organic Farming Initiative",
-    category: "environment",
-    image: "/organic-farming.jpg",
-    description: "Sustainable farming practices for community development",
+    title: "Science Awareness Mela - Ceremonial Lighting",
+    category: "events",
+    image: "/WhatsApp Image 2025-08-17 at 15.14.43_5c2ff7c1.jpg",
+    description: "Traditional lamp lighting ceremony with dignitaries",
     icon: <Globe className="h-4 w-4" />,
-    featured: true
+    featured: false
   },
   {
     id: 3,
-    title: "Education Support",
-    category: "education",
-    image: "/program-education.jpg",
-    description: "Empowering children through quality education",
+    title: "Science Awareness Mela - Award Presentation",
+    category: "events",
+    image: "/WhatsApp Image 2025-08-17 at 15.14.43_daf7eb35.jpg",
+    description: "Certificate presentation ceremony at the Science Awareness Mela",
     icon: <BookOpen className="h-4 w-4" />,
-    featured: true
+    featured: false
   },
   {
     id: 4,
@@ -121,26 +130,9 @@ const galleryData = [
     icon: <Globe className="h-4 w-4" />,
     featured: false
   },
+
   {
     id: 12,
-    title: "Healthcare Services",
-    category: "healthcare",
-    image: "/gallery-4.jpg",
-    description: "Professional healthcare services for communities",
-    icon: <Heart className="h-4 w-4" />,
-    featured: false
-  },
-  {
-    id: 13,
-    title: "Community Health Camp",
-    category: "healthcare",
-    image: "/gallery-5.jpg",
-    description: "Comprehensive health services for rural communities",
-    icon: <Heart className="h-4 w-4" />,
-    featured: false
-  },
-  {
-    id: 14,
     title: "Art & Creativity Workshop",
     category: "education",
     image: "/gallery-6.jpg",
@@ -149,7 +141,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 15,
+    id: 13,
     title: "Environmental Conservation",
     category: "environment",
     image: "/gallery-7.jpg",
@@ -158,7 +150,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 16,
+    id: 14,
     title: "Community Meeting",
     category: "community",
     image: "/gallery-8.jpg",
@@ -167,7 +159,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 17,
+    id: 15,
     title: "Skill Development Program",
     category: "education",
     image: "/gallery-9.jpg",
@@ -176,7 +168,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 18,
+    id: 16,
     title: "Distribution Program",
     category: "food",
     image: "/gallery-10.jpg",
@@ -185,7 +177,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 19,
+    id: 17,
     title: "Children's Joy & Learning",
     category: "education",
     image: "/gallery-11.jpg",
@@ -194,7 +186,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 20,
+    id: 18,
     title: "Educational Support",
     category: "education",
     image: "/gallery-12.jpg",
@@ -203,7 +195,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 21,
+    id: 19,
     title: "School Meal Distribution",
     category: "food",
     image: "/gallery-13.jpg",
@@ -212,7 +204,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 22,
+    id: 20,
     title: "Children with Supplies",
     category: "education",
     image: "/gallery-14.jpg",
@@ -221,7 +213,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 23,
+    id: 21,
     title: "Community Distribution",
     category: "community",
     image: "/gallery-15.jpg",
@@ -230,7 +222,7 @@ const galleryData = [
     featured: false
   },
   {
-    id: 24,
+    id: 22,
     title: "Children's Learning Activities",
     category: "education",
     image: "/gallery-16.jpg",
@@ -242,6 +234,7 @@ const galleryData = [
 
 const categories = [
   { id: "all", name: "All", icon: <Camera className="h-4 w-4" /> },
+  { id: "events", name: "Events", icon: <Globe className="h-4 w-4" /> },
   { id: "education", name: "Education", icon: <BookOpen className="h-4 w-4" /> },
   { id: "healthcare", name: "Healthcare", icon: <Heart className="h-4 w-4" /> },
   { id: "environment", name: "Environment", icon: <Globe className="h-4 w-4" /> },
@@ -254,8 +247,61 @@ export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<typeof galleryData[0] | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isAdminMode, setIsAdminMode] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  // Helper function to get icon for category
+  const getIconForCategory = (category: string) => {
+    const iconMap = {
+      events: <Globe className="h-4 w-4" />,
+      education: <BookOpen className="h-4 w-4" />,
+      healthcare: <Heart className="h-4 w-4" />,
+      environment: <Globe className="h-4 w-4" />,
+      food: <Heart className="h-4 w-4" />,
+      community: <Users className="h-4 w-4" />
+    };
+    return iconMap[category as keyof typeof iconMap] || <Globe className="h-4 w-4" />;
+  };
 
-  const filteredImages = galleryData.filter(item => {
+  const [galleryItems, setGalleryItems] = useState(galleryData);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load gallery data from localStorage on component mount (client-side only)
+  useEffect(() => {
+    const savedGallery = localStorage.getItem('littleDropsGallery');
+    if (savedGallery) {
+      try {
+        const parsedGallery = JSON.parse(savedGallery);
+        // Restore icons for loaded data
+        const restoredGallery = parsedGallery.map((item: any) => ({
+          ...item,
+          icon: getIconForCategory(item.category)
+        }));
+        setGalleryItems(restoredGallery);
+      } catch (error) {
+        console.error('Error loading gallery from localStorage:', error);
+      }
+    }
+    setIsLoaded(true);
+  }, []);
+
+  // Save gallery data to localStorage whenever it changes
+  useEffect(() => {
+    // Create a serializable version of gallery items (without React elements)
+    const serializableGallery = galleryItems.map(item => ({
+      ...item,
+      icon: null // Remove React element before serialization
+    }));
+    localStorage.setItem('littleDropsGallery', JSON.stringify(serializableGallery));
+  }, [galleryItems]);
+  const [newImage, setNewImage] = useState({
+    title: "",
+    category: "events",
+    image: "",
+    description: "",
+    featured: false
+  });
+
+  const filteredImages = galleryItems.filter(item => {
     const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
     const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          item.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -289,6 +335,79 @@ export default function GalleryPage() {
     if (e.key === 'ArrowLeft') prevImage();
   };
 
+  // Admin Functions
+  const deleteImage = (id: number) => {
+    if (confirm("Are you sure you want to delete this image?")) {
+      setGalleryItems(prev => prev.filter(item => item.id !== id));
+      // Close lightbox if the deleted image was being viewed
+      if (selectedImage && selectedImage.id === id) {
+        setSelectedImage(null);
+      }
+    }
+  };
+
+  const addImage = () => {
+    if (newImage.title && newImage.image && newImage.description) {
+      const newId = Math.max(...galleryItems.map(item => item.id)) + 1;
+
+      const newItem = {
+        id: newId,
+        title: newImage.title,
+        category: newImage.category,
+        image: newImage.image,
+        description: newImage.description,
+        icon: getIconForCategory(newImage.category),
+        featured: newImage.featured
+      };
+
+      setGalleryItems(prev => [...prev, newItem]);
+      setNewImage({
+        title: "",
+        category: "events",
+        image: "",
+        description: "",
+        featured: false
+      });
+      setShowAddModal(false);
+    }
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setNewImage(prev => ({
+          ...prev,
+          image: event.target?.result as string
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const resetGallery = () => {
+    if (confirm("Are you sure you want to reset the gallery to its original state? This will remove all added photos and restore deleted ones.")) {
+      setGalleryItems(galleryData);
+      localStorage.removeItem('littleDropsGallery');
+    }
+  };
+
+  // Show loading state until client-side data is loaded to prevent hydration mismatch
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+        <Navbar />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading gallery...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Navbar */}
@@ -314,7 +433,15 @@ export default function GalleryPage() {
       </section>
 
       {/* Search and Filters */}
-      <section className="py-6 bg-white border-b">
+      <section className={`py-6 border-b ${isAdminMode ? 'bg-yellow-50 border-yellow-200' : 'bg-white'}`}>
+        {isAdminMode && (
+          <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 mb-4">
+            <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-3 flex items-center gap-2">
+              <Settings className="h-4 w-4 text-yellow-700" />
+              <span className="text-sm font-medium text-yellow-800">Admin Mode Active - You can now add and delete photos</span>
+            </div>
+          </div>
+        )}
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             {/* Search Bar */}
@@ -326,6 +453,7 @@ export default function GalleryPage() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                suppressHydrationWarning
               />
             </div>
 
@@ -342,11 +470,132 @@ export default function GalleryPage() {
                       ? "bg-blue-600 text-white shadow-md"
                       : "hover:bg-blue-50 hover:border-blue-300"
                   }`}
+                  suppressHydrationWarning
                 >
                   {category.icon}
                   <span className="ml-1">{category.name}</span>
                 </Button>
               ))}
+            </div>
+
+            {/* Admin Controls */}
+            <div className="flex items-center gap-2">
+              <Button
+                variant={isAdminMode ? "default" : "outline"}
+                size="sm"
+                onClick={() => setIsAdminMode(!isAdminMode)}
+                className="flex items-center gap-1"
+                suppressHydrationWarning
+              >
+                <Settings className="h-4 w-4" />
+                {isAdminMode ? "Admin Mode" : "Admin"}
+              </Button>
+              
+              {isAdminMode && (
+                <>
+                  <Dialog open={showAddModal} onOpenChange={setShowAddModal}>
+                    <DialogTrigger asChild>
+                      <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white" suppressHydrationWarning>
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add Photo
+                      </Button>
+                    </DialogTrigger>
+                  <DialogContent className="sm:max-w-[500px]">
+                    <DialogHeader>
+                      <DialogTitle>Add New Photo to Gallery</DialogTitle>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <div className="grid gap-2">
+                        <Label htmlFor="title">Title</Label>
+                        <Input
+                          id="title"
+                          value={newImage.title}
+                          onChange={(e) => setNewImage(prev => ({ ...prev, title: e.target.value }))}
+                          placeholder="Enter photo title"
+                          suppressHydrationWarning
+                        />
+                      </div>
+                      <div className="grid gap-2">
+                        <Label htmlFor="category">Category</Label>
+                        <Select value={newImage.category} onValueChange={(value) => setNewImage(prev => ({ ...prev, category: value }))}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {categories.filter(cat => cat.id !== "all").map((category) => (
+                              <SelectItem key={category.id} value={category.id}>
+                                {category.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid gap-2">
+                        <Label htmlFor="image">Image</Label>
+                        <div className="flex items-center gap-2">
+                          <Input
+                            id="image"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            className="flex-1"
+                            suppressHydrationWarning
+                          />
+                          <Button variant="outline" size="sm" onClick={() => document.getElementById('image')?.click()}>
+                            <Upload className="h-4 w-4" />
+                          </Button>
+                        </div>
+                        {newImage.image && (
+                          <div className="mt-2">
+                            <img src={newImage.image} alt="Preview" className="w-32 h-24 object-cover rounded" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="grid gap-2">
+                        <Label htmlFor="description">Description</Label>
+                        <Textarea
+                          id="description"
+                          value={newImage.description}
+                          onChange={(e) => setNewImage(prev => ({ ...prev, description: e.target.value }))}
+                          placeholder="Enter photo description"
+                          rows={3}
+                          suppressHydrationWarning
+                        />
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          id="featured"
+                          checked={newImage.featured}
+                          onChange={(e) => setNewImage(prev => ({ ...prev, featured: e.target.checked }))}
+                          className="rounded"
+                          suppressHydrationWarning
+                        />
+                        <Label htmlFor="featured">Featured Image</Label>
+                      </div>
+                    </div>
+                    <div className="flex justify-end gap-2">
+                      <Button variant="outline" onClick={() => setShowAddModal(false)}>
+                        Cancel
+                      </Button>
+                      <Button onClick={addImage} className="bg-green-600 hover:bg-green-700">
+                        Add Photo
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+                
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  onClick={resetGallery}
+                  className="border-orange-300 text-orange-700 hover:bg-orange-50"
+                  suppressHydrationWarning
+                >
+                  Reset Gallery
+                </Button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -358,7 +607,7 @@ export default function GalleryPage() {
           {/* Results Count */}
           <div className="flex items-center justify-between mb-6">
             <p className="text-sm text-gray-600">
-              Showing {filteredImages.length} of {galleryData.length} images
+              Showing {filteredImages.length} of {galleryItems.length} images
             </p>
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-gray-400" />
@@ -401,28 +650,47 @@ export default function GalleryPage() {
 
                   {/* Action Buttons */}
                   <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="w-6 h-6 bg-white/20 hover:bg-white/30 text-white p-0"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Add download functionality
-                      }}
-                    >
-                      <Download className="h-3 w-3" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="w-6 h-6 bg-white/20 hover:bg-white/30 text-white p-0"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Add share functionality
-                      }}
-                    >
-                      <Share2 className="h-3 w-3" />
-                    </Button>
+                    {!isAdminMode ? (
+                      <>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="w-6 h-6 bg-white/20 hover:bg-white/30 text-white p-0"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            // Add download functionality
+                          }}
+                          suppressHydrationWarning
+                        >
+                          <Download className="h-3 w-3" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="w-6 h-6 bg-white/20 hover:bg-white/30 text-white p-0"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            // Add share functionality
+                          }}
+                          suppressHydrationWarning
+                        >
+                          <Share2 className="h-3 w-3" />
+                        </Button>
+                      </>
+                    ) : (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="w-6 h-6 bg-red-500/80 hover:bg-red-600 text-white p-0"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteImage(item.id);
+                        }}
+                        suppressHydrationWarning
+                      >
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               </Card>
@@ -444,7 +712,7 @@ export default function GalleryPage() {
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-xl md:text-2xl font-bold text-blue-600 mb-1">{galleryData.length}+</div>
+              <div className="text-xl md:text-2xl font-bold text-blue-600 mb-1">{galleryItems.length}+</div>
               <div className="text-xs text-gray-600">Impact Stories</div>
             </div>
             <div>
@@ -477,6 +745,7 @@ export default function GalleryPage() {
               size="icon"
               className="absolute top-3 right-3 z-10 bg-white/20 hover:bg-white/30 text-white"
               onClick={closeLightbox}
+              suppressHydrationWarning
             >
               <X className="h-5 w-5" />
             </Button>
@@ -487,6 +756,7 @@ export default function GalleryPage() {
               size="icon"
               className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 text-white"
               onClick={prevImage}
+              suppressHydrationWarning
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
@@ -495,6 +765,7 @@ export default function GalleryPage() {
               size="icon"
               className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 text-white"
               onClick={nextImage}
+              suppressHydrationWarning
             >
               <ChevronRight className="h-5 w-5" />
             </Button>
@@ -519,10 +790,10 @@ export default function GalleryPage() {
                     </Badge>
                   </div>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="ghost" className="bg-white/20 hover:bg-white/30 text-white">
+                    <Button size="sm" variant="ghost" className="bg-white/20 hover:bg-white/30 text-white" suppressHydrationWarning>
                       <Download className="h-4 w-4" />
                     </Button>
-                    <Button size="sm" variant="ghost" className="bg-white/20 hover:bg-white/30 text-white">
+                    <Button size="sm" variant="ghost" className="bg-white/20 hover:bg-white/30 text-white" suppressHydrationWarning>
                       <Share2 className="h-4 w-4" />
                     </Button>
                   </div>

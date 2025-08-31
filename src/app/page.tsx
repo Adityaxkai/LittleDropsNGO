@@ -6,7 +6,7 @@ import { BloodDonation } from "@/components/shared/blood-donation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowRight, Heart, BookOpen, Droplets, Users, DollarSign } from "lucide-react";
+import { ArrowRight, Heart, BookOpen, Droplets, Users, DollarSign, Globe } from "lucide-react";
 
 const programs = [
   {
@@ -230,30 +230,30 @@ export default function HomePage() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="h-48 relative overflow-hidden">
                 <img
-                  src="/children-smiling.jpg"
-                  alt="Children receiving healthcare services"
+                  src="/WhatsApp Image 2025-08-17 at 15.43.11_921efcda.jpg"
+                  alt="Science Awareness Mela Inauguration"
                   className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/80 via-blue-500/40 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="flex items-center space-x-2">
                     <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                      <Heart className="h-5 w-5" />
+                      <Globe className="h-5 w-5" />
                     </div>
-                    <h3 className="text-lg font-bold">Healthcare Access</h3>
+                    <h3 className="text-lg font-bold">Science Awareness</h3>
                   </div>
                 </div>
               </div>
               <div className="p-6">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3">Mobile Medical Camps</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Science Awareness Mela</h4>
                 <p className="text-gray-600 mb-4">
-                  We&apos;ve provided healthcare to over 5,000 people in remote villages through our mobile medical camps, 
-                  bringing essential medical services to communities that had no access before.
+                  Organized three-day science awareness fairs sponsored by Ministry of Science & Technology, 
+                  Govt. of India, reaching over 300 students across multiple schools in Jharkhand.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">5000+ Lives Impacted</span>
+                  <span className="text-sm text-gray-500">300+ Students</span>
                   <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
-                    <Link href="/programs">Read More</Link>
+                    <Link href="/gallery">View Gallery</Link>
                   </Button>
                 </div>
               </div>
@@ -263,30 +263,30 @@ export default function HomePage() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="h-48 relative overflow-hidden">
                 <img
-                  src="/education-card.jpg"
-                  alt="Education for All - Children with drawings"
+                  src="/WhatsApp Image 2025-08-17 at 15.49.51_32e49d80.jpg"
+                  alt="Cultural Performance at Science Mela"
                   className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-600/80 via-green-500/40 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="flex items-center space-x-2">
                     <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                      <BookOpen className="h-5 w-5" />
+                      <Users className="h-5 w-5" />
                     </div>
-                    <h3 className="text-lg font-bold">Education for All</h3>
+                    <h3 className="text-lg font-bold">Cultural Programs</h3>
                   </div>
                 </div>
               </div>
               <div className="p-6">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3">Environmental Education</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Cultural Performances</h4>
                 <p className="text-gray-600 mb-4">
-                  Teaching children about environmental awareness through creative activities like Earth Day celebrations, 
-                  helping them understand the importance of protecting our planet.
+                  Children presenting traditional dances and dramas to convey environmental protection messages, 
+                  combining cultural expression with scientific awareness.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">500+ Students</span>
+                  <span className="text-sm text-gray-500">225+ Participants</span>
                   <Button asChild size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                    <Link href="/programs">Read More</Link>
+                    <Link href="/media">View Media</Link>
                   </Button>
                 </div>
               </div>
@@ -296,30 +296,30 @@ export default function HomePage() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="h-48 relative overflow-hidden">
                 <img
-                  src="/children-community.jpg"
-                  alt="Children in community setting"
+                  src="/WhatsApp Image 2025-08-17 at 15.37.16_c7cbb4bc.jpg"
+                  alt="Award Ceremony at Science Mela"
                   className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-purple-600/80 via-purple-500/40 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="flex items-center space-x-2">
                     <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                      <Droplets className="h-5 w-5" />
+                      <BookOpen className="h-5 w-5" />
                     </div>
-                    <h3 className="text-lg font-bold">Clean Water</h3>
+                    <h3 className="text-lg font-bold">Awards & Recognition</h3>
                   </div>
                 </div>
               </div>
               <div className="p-6">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3">Water Wells Project</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Student Achievements</h4>
                 <p className="text-gray-600 mb-4">
-                  Installed 15 water wells in drought-affected villages, providing clean drinking water to 
-                  3,000+ families and reducing water-borne diseases by 80%.
+                  Students receiving certificates and trophies for their participation in science competitions, 
+                  encouraging scientific thinking and innovation among young minds.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">3000+ Families</span>
+                  <span className="text-sm text-gray-500">50+ Awards</span>
                   <Button asChild size="sm" className="bg-purple-600 hover:bg-purple-700 text-white">
-                    <Link href="/programs">Read More</Link>
+                    <Link href="/gallery">View Gallery</Link>
                   </Button>
                 </div>
               </div>
@@ -351,7 +351,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+    </div>
       </section>
     </MainLayout>
   );

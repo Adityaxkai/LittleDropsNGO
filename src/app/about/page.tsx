@@ -38,29 +38,24 @@ const values = [
 
 const team = [
   {
-    name: "Dr. Sarah Williams",
-    role: "Executive Director",
-    bio: "With over 15 years of experience in international development, Sarah leads our organization with passion and expertise.",
-    image: "/api/placeholder/200/200",
+    name: "Amresh Kumar Chourasia",
+    role: "President",
+    bio: "With over 15 years of experience in international development, Amresh leads our organization with passion and expertise.",
+    image: "/WhatsApp Image 2025-08-17 at 15.10.39_83e7c93b.jpg",
   },
   {
-    name: "Michael Rodriguez",
-    role: "Program Director",
-    bio: "Michael oversees our field operations and ensures our programs deliver maximum impact to communities.",
-    image: "/api/placeholder/200/200",
+    name: "Jiwan Kumar",
+    role: "Secretary",
+    bio: "Jiwan oversees our field operations and ensures our programs deliver maximum impact to communities.",
+    image: "/WhatsApp Image 2025-08-17 at 15.11.24_55ec6342.jpg",
   },
   {
-    name: "Dr. Aisha Patel",
-    role: "Medical Director",
-    bio: "Dr. Patel leads our healthcare initiatives, bringing medical expertise to underserved communities.",
-    image: "/api/placeholder/200/200",
+    name: "Deepak Kumar",
+    role: "Treasurer",
+    bio: "Deepak manages our financial operations and ensures transparent accounting practices for all our programs and initiatives.",
+    image: "/WhatsApp Image 2025-08-28 at 22.35.08_1f79430f.jpg",
   },
-  {
-    name: "David Chen",
-    role: "Education Coordinator",
-    bio: "David manages our educational programs, working to provide quality learning opportunities for all children.",
-    image: "/api/placeholder/200/200",
-  },
+
 ];
 
 export default function AboutPage() {
@@ -301,42 +296,50 @@ export default function AboutPage() {
              </p>
            </div>
            
-           {/* Desktop Grid */}
-           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-             {team.map((member, index) => (
-               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                 <CardContent className="p-6 text-center">
-                   <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                     {member.name}
-                   </h3>
-                   <Badge className="mb-3 bg-blue-100 text-blue-800">
-                     {member.role}
-                   </Badge>
-                   <p className="text-gray-600 text-sm">
-                     {member.bio}
-                   </p>
-                 </CardContent>
-               </Card>
-             ))}
-           </div>
+                       {/* Desktop Grid */}
+            <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {team.map((member, index) => (
+                <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {member.name}
+                    </h3>
+                    <Badge className="mb-3 bg-blue-100 text-blue-800">
+                      {member.role}
+                    </Badge>
+                    <p className="text-gray-600 text-sm">
+                      {member.bio}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
 
                        {/* Mobile Scrollable Cards */}
             <div className="md:hidden">
               <div className="relative">
-                <div className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory">
+                <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory justify-center">
                   {team.map((member, index) => (
                     <Card 
                       key={index} 
-                      className="border-0 shadow-lg min-w-[300px] flex-shrink-0 snap-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50/50"
+                      className="border-0 shadow-lg min-w-[280px] max-w-[320px] flex-shrink-0 snap-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50/50"
                     >
-                      <CardContent className="p-6 text-center relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-                        <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center shadow-md">
-                          <span className="text-2xl font-bold text-blue-600">
-                            {member.name.split(' ').map(n => n[0]).join('')}
-                          </span>
-                        </div>
+                                             <CardContent className="p-6 text-center relative overflow-hidden">
+                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                         <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden shadow-md">
+                           <img
+                             src={member.image}
+                             alt={member.name}
+                             className="w-full h-full object-cover"
+                           />
+                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2">
                           {member.name}
                         </h3>
@@ -355,9 +358,9 @@ export default function AboutPage() {
                 </div>
                 {/* Scroll Indicators */}
                 <div className="flex justify-center mt-4 space-x-2">
-                  {team.map((_, index) => (
-                    <div key={index} className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                  ))}
+                  <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                  <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                  <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
                 </div>
               </div>
             </div>
