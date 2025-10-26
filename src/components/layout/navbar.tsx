@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -22,6 +22,51 @@ const navigation = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Logo />
+            <div className="hidden md:flex items-center space-x-8">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium relative group"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div className="flex items-center space-x-3">
+                <Button asChild variant="outline" size="sm">
+                  <Link href="/admin">Admin</Link>
+                </Button>
+                <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Link href="/donate">Donate Now</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="md:hidden">
+              <Button variant="ghost" size="sm" className="w-12 h-12">
+                <div className="flex flex-col items-center justify-center space-y-1">
+                  <div className="w-5 h-0.5 bg-gray-700"></div>
+                  <div className="w-5 h-0.5 bg-gray-700"></div>
+                  <div className="w-5 h-0.5 bg-gray-700"></div>
+                </div>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -43,13 +88,13 @@ export function Navbar() {
               </Link>
             ))}
             <div className="flex items-center space-x-3">
-              <Button asChild variant="outline" size="sm" className="border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200">
+              <Button asChild variant="outline" size="sm" className="border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200" suppressHydrationWarning>
                 <Link href="/admin" className="flex items-center">
                   <Shield className="h-4 w-4 mr-1" />
                   Admin
                 </Link>
               </Button>
-              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200">
+              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200" suppressHydrationWarning>
                 <Link href="/donate">Donate Now</Link>
               </Button>
             </div>
@@ -63,6 +108,7 @@ export function Navbar() {
                   variant="ghost" 
                   size="sm"
                   className="relative w-12 h-12 rounded-xl hover:bg-blue-50 hover:border-blue-200 border-2 border-transparent transition-all duration-300 group"
+                  suppressHydrationWarning
                 >
                   <div className="flex flex-col items-center justify-center space-y-1">
                     <div className="w-5 h-0.5 bg-gray-700 group-hover:bg-blue-600 transition-all duration-300 transform group-hover:rotate-45 group-hover:translate-y-1.5"></div>

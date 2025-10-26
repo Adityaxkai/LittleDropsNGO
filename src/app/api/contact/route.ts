@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,11 +13,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if email credentials are properly configured
-    const emailUser = process.env.EMAIL_USER || 'littledrops1109@gmail.com';
-    const emailPass = process.env.EMAIL_PASS;
+    // Check if Resend API key is configured
+    const resendApiKey = process.env.RESEND_API_KEY;
 
-    if (!emailPass || emailPass === 'your-app-password-here') {
+    if (!resendApiKey || resendApiKey === 'your-resend-api-key-here') {
       // For now, just log the message and return success (for testing)
       console.log('=== CONTACT FORM SUBMISSION ===');
       console.log('Name:', firstName, lastName);
@@ -31,23 +30,17 @@ export async function POST(request: NextRequest) {
       
       return NextResponse.json({
         success: true,
-        message: 'Message received! Please set up email credentials to enable email delivery. Check console for message details.'
+        message: 'Message received! Please set up Resend API key to enable email delivery. Check console for message details.'
       });
     }
 
-    // Create transporter (using Gmail SMTP)
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: emailUser,
-        pass: emailPass
-      }
-    });
+    // Initialize Resend
+    const resend = new Resend(resendApiKey);
 
-    // Email content
-    const mailOptions = {
-      from: process.env.EMAIL_USER || 'littledrops1109@gmail.com',
-      to: 'littledrops1109@gmail.com',
+    // Send email using Resend
+    const { data, error } = await resend.emails.send({
+      from: 'LittleDrops NGO <onboarding@resend.dev>', // You can change this to your verified domain
+      to: ['littledrops1109@gmail.com'],
       subject: `Contact Form: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
@@ -100,10 +93,17 @@ export async function POST(request: NextRequest) {
           </div>
         </div>
       `
-    };
+    });
 
-    // Send email
-    await transporter.sendMail(mailOptions);
+    if (error) {
+      console.error('Resend error:', error);
+      return NextResponse.json({
+        success: false,
+        message: 'Failed to send email. Please try again later.'
+      }, { status: 500 });
+    }
+
+    console.log('Email sent successfully:', data);
 
     return NextResponse.json({
       success: true,
