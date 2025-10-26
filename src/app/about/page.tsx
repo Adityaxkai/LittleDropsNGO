@@ -57,7 +57,7 @@ const team = [
     name: "Deepak Kumar",
     role: "Treasurer",
     bio: "Deepak manages our financial operations and ensures transparent accounting practices for all our programs and initiatives.",
-    image: "/WhatsApp Image 2025-08-28 at 22.35.08_1f79430f.jpg",
+    image: "/Gemini_Generated_Image_5cojlx5cojlx5coj.png",
   },
 
 ];

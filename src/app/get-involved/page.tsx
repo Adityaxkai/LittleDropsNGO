@@ -3,8 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ContactFormModal } from "@/components/shared/contact-form-modal";
 import Link from "next/link";
-import { ArrowRight, Users, Heart, Building, Globe, Calendar, MapPin, Clock, Mail } from "lucide-react";
+import { ArrowRight, Users, Heart, Building, Globe, Calendar, MapPin, Clock, Mail, MessageCircle } from "lucide-react";
 
 const volunteerOpportunities = [
   {
@@ -118,9 +119,19 @@ export default function GetInvolvedPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Volunteer Opportunities
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
               Make a direct impact by volunteering your time and skills in communities around the world.
             </p>
+            <ContactFormModal
+              trigger={
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  Enquiry
+                </Button>
+              }
+              title="Volunteer Enquiry"
+              description="Have questions about volunteering? Send us your enquiry and we'll get back to you with more information."
+            />
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -158,12 +169,16 @@ export default function GetInvolvedPage() {
                           ))}
                         </div>
                       </div>
-                      <Button asChild className="w-full bg-red-500 text-white hover:bg-red-600 font-bold shadow-lg">
-                        <Link href="/contact">
-                          Apply Now
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
+                      <ContactFormModal
+                        trigger={
+                          <Button className="w-full bg-red-500 text-white hover:bg-red-600 font-bold shadow-lg">
+                            Apply Now
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        }
+                        title={`Apply for ${opportunity.title}`}
+                        description={`Apply to become a ${opportunity.title} and make a difference in communities around the world.`}
+                      />
                     </div>
                   </div>
                 </CardContent>
@@ -303,10 +318,10 @@ export default function GetInvolvedPage() {
             </p>
           </div>
           
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full" suppressHydrationWarning>
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left">
+                <AccordionTrigger className="text-left" suppressHydrationWarning>
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600">
