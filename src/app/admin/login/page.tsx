@@ -123,13 +123,13 @@ export default function AdminLoginPage() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              {/* <p className="text-sm text-gray-600">
                 Demo Credentials:
               </p>
               <p className="text-xs text-gray-500 mt-1">
                 Email: admin@littledrops.org<br />
                 Password: admin123
-              </p>
+              </p> */}
             </div>
           </CardContent>
         </Card>
